@@ -1,19 +1,19 @@
-import Document from 'next/document'
-import * as React from 'react'
-import { setup } from 'twind'
-import { asyncVirtualSheet, getStyleTagProperties } from 'twind/server'
+import Document from 'next/document';
+import * as React from 'react';
+import { setup } from 'twind';
+import { asyncVirtualSheet, getStyleTagProperties } from 'twind/server';
 
-const sheet = asyncVirtualSheet()
+const sheet = asyncVirtualSheet();
 
-setup({ sheet })
+setup({ sheet });
 
 export default class MyDocument extends Document {
 	static async getInitialProps(ctx) {
-		sheet.reset()
+		sheet.reset();
 
-		const initialProps = await Document.getInitialProps(ctx)
+		const initialProps = await Document.getInitialProps(ctx);
 
-		const { id, textContent } = getStyleTagProperties(sheet)
+		const { id, textContent } = getStyleTagProperties(sheet);
 
 		const styleProps = {
 			id,
@@ -21,7 +21,7 @@ export default class MyDocument extends Document {
 			dangerouslySetInnerHTML: {
 				__html: textContent,
 			},
-		}
+		};
 
 		return {
 			...initialProps,
@@ -29,6 +29,6 @@ export default class MyDocument extends Document {
 				...initialProps.styles,
 				React.createElement('style', styleProps),
 			],
-		}
+		};
 	}
 }

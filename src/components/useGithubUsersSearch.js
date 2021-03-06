@@ -59,7 +59,7 @@ export const useGithubUsersSearch = (query, perPage = 10) => {
 	);
 
 	return {
-		total: data?.userCount,
+		total: data?.pages[0].userCount,
 		data: data?.pages
 			.flatMap((page) => page.edges.map((edge) => edge.node))
 			.filter((node) => !!node.id && !!node.login),

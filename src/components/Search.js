@@ -7,9 +7,13 @@ import { useGithubUsersSearch } from './useGithubUsersSearch';
 export const Search = () => {
 	const [query, setQuery] = useState();
 
-	const { data, refetch, hasNextPage, fetchNextPage } = useGithubUsersSearch(
-		query,
-	);
+	const {
+		data,
+		refetch,
+		hasNextPage,
+		fetchNextPage,
+		total,
+	} = useGithubUsersSearch(query);
 
 	useEffect(() => {
 		if (query) {
@@ -36,11 +40,14 @@ export const Search = () => {
 				onSubmit={handleSubmit}
 			/>
 			{!!data && (
-				<SearchResults
-					items={data}
-					hasNextPage={hasNextPage}
-					onLoadNextPage={handleLoadNextPage}
-				/>
+				<>
+					<p className={tw`my-1`}>Found {total} users matching your query.</p>
+					<SearchResults
+						items={data}
+						hasNextPage={hasNextPage}
+						onLoadNextPage={handleLoadNextPage}
+					/>
+				</>
 			)}
 		</div>
 	);

@@ -15,6 +15,7 @@ install: package.json ## install dependencies
 
 run: yarn dev ## Run the app in dev mode
 
+build: yarn build ## Build for production
 test: ## Run the test
 	@if [ "$(CI)" != "true" ]; then \
 		yarn test; \

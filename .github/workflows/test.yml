@@ -24,8 +24,6 @@ jobs:
     - uses: bahmutov/npm-install@v1
     - name: Build
       run: make build
-    - name: Lint
-      run: make lint
     - name: Unit Tests
       run: make test
       env:

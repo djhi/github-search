@@ -13,9 +13,12 @@ install: package.json ## install dependencies
 		yarn --frozen-lockfile; \
 	fi
 
-run: yarn dev ## Run the app in dev mode
+run: ## Run the app in dev mode
+	yarn dev 
 
-build: yarn build ## Build for production
+build: ## Build for production
+	yarn build
+
 test: ## Run the test
 	@if [ "$(CI)" != "true" ]; then \
 		yarn test; \

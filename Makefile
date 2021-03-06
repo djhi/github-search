@@ -19,10 +19,18 @@ run: ## Run the app in dev mode
 build: ## Build for production
 	yarn build
 
-test: ## Run the test
+test-unit: ## Run the unit test
 	@if [ "$(CI)" != "true" ]; then \
 		yarn test; \
 	fi
 	@if [ "$(CI)" = "true" ]; then \
 		yarn test-ci; \
 	fi
+
+test-e2e: ## Run the e2e tests
+	yarn start && yarn cypress run
+
+test-e2e-local: ## Run the e2e tests on local env
+	yarn cypress open
+
+test: test-unit test-e2e
